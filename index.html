@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeBite - Đăng nhập & Đăng ký</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#00875A", secondary: "#FFB800" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+
+      .phone-frame {
+        position: relative;
+        width: 375px;
+        height: 762px;
+        border-radius: 40px;
+        border: 12px solid #000;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .phone-notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 180px;
+        height: 30px;
+        background-color: #000;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        z-index: 100;
+      }
+
+      .app-logo {
+        font-family: "Pacifico", cursive;
+        color: #00875a;
+        font-size: 2.5rem;
+      }
+
+      .login-btn,
+      .register-btn {
+        background-color: #ffb800;
+        color: #000;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .login-btn:hover,
+      .register-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
+      .input-field {
+        background-color: #00875a;
+        color: white;
+        border-radius: 20px;
+        padding: 12px 20px;
+        width: 100%;
+        margin-bottom: 15px;
+        border: none;
+        outline: none;
+      }
+
+      .input-field::placeholder {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .input-field:focus {
+        box-shadow: 0 0 0 2px rgba(0, 135, 90, 0.3);
+      }
+
+      .avatar-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid #00875a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+      }
+
+      .avatar-icon {
+        font-size: 50px;
+        color: #00875a;
+      }
+      .auth-container {
+        padding: 20px;
+        height: 100%;
+        /* background: linear-gradient(
+          135deg,
+          rgba(46, 125, 50, 0.1),
+          rgba(129, 199, 132, 0.1)
+        ); */
+      }
+      .auth-logo {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .auth-logo img {
+        width: 80px;
+        height: 80px;
+      }
+      .auth-title {
+        color: #2e7d32;
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .auth-form {
+        background: linear-gradient(
+          135deg,
+          rgba(58, 227, 67, 0.1),
+          rgba(1, 99, 6, 0.1)
+        );
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+      .form-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .form-input:focus {
+        border-color: #4caf50;
+        outline: none;
+      }
+      .form-label {
+        position: absolute;
+        left: 15px;
+        top: -10px;
+        background: white;
+        padding: 0 5px;
+        color: #2e7d32;
+        font-size: 14px;
+      }
+      .auth-button {
+        width: 100%;
+        padding: 15px;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .auth-button:active {
+        transform: scale(0.98);
+      }
+
+      .auth-switch {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .auth-switch a {
+        color: #2e7d32;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .logo-container {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        width: 150px;
+        height: auto;
+      }
+
+      .form-container {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #2e7d32;
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 24px;
+      }
+
+      .input-group {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .input-group i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #2e7d32;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .input-group input:focus {
+        border-color: #2e7d32;
+        outline: none;
+      }
+
+      .register-btn {
+        width: 100%;
+        padding: 12px;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .register-btn:hover {
+        background: #1b5e20;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .login-link a {
+        color: #2e7d32;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      /* ...existing code... */
+
+      .social-login {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        justify-content: space-between;
+      }
+
+      .social-login button {
+        width: 48%; /* Đảm bảo 2 nút có chiều rộng bằng nhau */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      /* Điều chỉnh kích thước icon cho cân đối */
+      .social-login i {
+        font-size: 18px;
+        min-width: 20px;
+      }
+
+      .google-btn {
+        background: white;
+        color: #444;
+        border: 1px solid #ddd;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .google-btn i {
+        background: conic-gradient(
+            from -45deg,
+            #4285f4 110deg,
+            #34a853 90deg 180deg,
+            #fbbc05 180deg 270deg,
+            #ea4335 270deg
+          )
+          50% 50%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 18px;
+      }
+
+      .google-btn:hover {
+        background: #f8f9fa;
+        border-color: #dadce0;
+      }
+
+      /* Giữ nguyên các CSS khác */
+
+      .facebook-btn {
+        background: #1877f2;
+        color: white;
+        border: none !important;
+      }
+
+      .divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        height: 1px;
+        background: #ddd;
+        flex: 1;
+      }
+
+      .divider span {
+        padding: 0 15px;
+        color: #666;
+        font-size: 14px;
+        background: white;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 min-h-screen flex flex-col md:flex-row items-center justify-center p-4 gap-8"
+  >
+    <!-- Login Phone Frame -->
+    <div class="phone-frame bg-white mb-8 md:mb-0">
+      <div class="phone-notch"></div>
+      <div class="h-full flex flex-col p-6 pt-12 relative">
+        <!-- <div
+          class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center"
+        >
+          <i
+            class="ri-settings-3-line text-xl text-gray-700 cursor-pointer"
+          ></i>
+        </div> -->
+
+        <div class="auth-container">
+          <div class="auth-logo flex justify-center items-center mt-8">
+            <img
+              src="./assets/images/logo.jpg"
+              alt="Logo"
+              class="w-24 h-24 rounded-full shadow-md border border-black"
+            />
+          </div>
+
+          <h1 class="text-center text-2xl font-bold text-primary mt-4 mb-6">
+            Đăng nhập
+          </h1>
+
+          <form class="auth-form">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-input"
+                placeholder="Nhập email của bạn"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Mật khẩu</label>
+              <input
+                type="password"
+                class="form-input"
+                placeholder="Nhập mật khẩu"
+              />
+            </div>
+
+            <button type="submit" class="auth-button">Đăng nhập</button>
+            <div class="divider">
+              <span>Hoặc đăng nhập với</span>
+            </div>
+
+            <div class="social-login">
+              <button type="button" class="google-btn">
+                <i class="fab fa-google"></i>
+                Google
+              </button>
+              <button type="button" class="facebook-btn">
+                <i class="fab fa-facebook-f"></i>
+                Facebook
+              </button>
+            </div>
+          </form>
+
+          <p class="text-center mt-6 text-sm text-gray-600">
+            Chưa có tài khoản?
+            <a
+              href="#"
+              class="text-primary font-medium hover:underline"
+              id="showRegister"
+              >Đăng ký ngay</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Phone Frame -->
+    <div class="phone-frame bg-white hidden" id="registerFrame">
+      <div class="phone-notch"></div>
+      <div class="container">
+        <div class="auth-logo flex justify-center items-center mt-8">
+          <img
+            src="./assets/images/logo.jpg"
+            alt="Logo"
+            class="w-24 h-24 rounded-full shadow-md border border-black"
+          />
+        </div>
+
+        <h1 class="text-center text-2xl font-bold text-primary mt-4 mb-6">
+          Đăng ký tài khoản
+        </h1>
+
+        <form class="auth-form w-full max-w-xs">
+          <div class="form-group">
+            <label class="form-label">Họ và tên</label>
+            <input type="text" class="form-input" placeholder="Nhập họ tên" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="Nhập email" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Số điện thoại</label>
+            <input
+              type="tel"
+              class="form-input"
+              placeholder="Nhập số điện thoại"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mật khẩu</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="Nhập mật khẩu"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Xác nhận mật khẩu</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="Nhập lại mật khẩu"
+            />
+          </div>
+
+          <button type="submit" class="auth-button">Đăng ký</button>
+        </form>
+
+        <div class="login-link">
+          Đã có tài khoản? <a href="#" id="showLogin">Đăng nhập</a>
+        </div>
+      </div>
+    </div>
+
+    <script id="authToggleScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginFrame = document.querySelector(".phone-frame:not(.hidden)");
+        const registerFrame = document.getElementById("registerFrame");
+        const showRegisterLink = document.getElementById("showRegister");
+        const showLoginLink = document.getElementById("showLogin");
+
+        showRegisterLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginFrame.classList.add("hidden");
+          registerFrame.classList.remove("hidden");
+        });
+
+        showLoginLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          registerFrame.classList.add("hidden");
+          loginFrame.classList.remove("hidden");
+        });
+      });
+    </script>
+
+    <script id="formValidationScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = loginForm.querySelector('input[type="text"]').value;
+          const password = loginForm.querySelector(
+            'input[type="password"]'
+          ).value;
+
+          if (username && password) {
+            // Success message or redirect would go here
+            console.log("Login successful!");
+
+            // Create custom notification
+            showNotification("Đăng nhập thành công!", "success");
+          } else {
+            showNotification("Vui lòng điền đầy đủ thông tin!", "error");
+          }
+        });
+
+        registerForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const inputs = registerForm.querySelectorAll("input");
+          const password = inputs[2].value;
+          const confirmPassword = inputs[3].value;
+
+          let isValid = true;
+          inputs.forEach((input) => {
+            if (!input.value.trim()) {
+              isValid = false;
+            }
+          });
+
+          if (!isValid) {
+            showNotification("Vui lòng điền đầy đủ thông tin!", "error");
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            showNotification("Mật khẩu không khớp!", "error");
+            return;
+          }
+
+          // Success message or redirect would go here
+          console.log("Registration successful!");
+          showNotification("Đăng ký thành công!", "success");
+        });
+      });
+
+      function showNotification(message, type) {
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = `fixed top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-md text-white text-sm font-medium z-50 ${
+          type === "success" ? "bg-green-500" : "bg-red-500"
+        }`;
+        notification.textContent = message;
+
+        // Add to body
+        document.body.appendChild(notification);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+          notification.classList.add(
+            "opacity-0",
+            "transition-opacity",
+            "duration-300"
+          );
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
+<script>
+  document
+    .querySelector(".auth-button")
+    .addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default form submission
+      // Add any login validation here if needed
+      window.location.href = "homepage.html";
+    });
+</script>

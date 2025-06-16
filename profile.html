@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeBite - Hồ sơ người dùng</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#A8FF8A", secondary: "#4CAF50" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background-color: #f5f5f5;
+      }
+
+      /* body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+        height: 24px;
+        background: #000;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        z-index: 100;
+      } */
+      .content-area {
+        padding-top: 60px;
+        padding-bottom: 70px;
+        min-height: 762px;
+        background: #f8f9fa;
+      }
+      .tab-indicator {
+        position: absolute;
+        height: 3px;
+        background-color: #a8ff8a;
+        bottom: 0;
+        transition: all 0.3s ease;
+      }
+      .menu-item {
+        transition: all 0.2s ease;
+      }
+      .menu-item:active {
+        background-color: rgba(168, 255, 138, 0.1);
+      }
+      .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo-container {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        width: 150px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <header class="fixed top-0 w-full bg-white shadow-sm z-50">
+      <div class="flex items-center justify-between px-4 py-3">
+        <a
+          href="homepage.html"
+          data-readdy="true"
+          class="w-8 h-8 flex items-center justify-center"
+        >
+          <i class="ri-arrow-left-s-line ri-lg"></i>
+        </a>
+        <h1 class="text-xl font-medium">Hồ sơ</h1>
+        <div class="w-8 h-8 flex items-center justify-center">
+          <i class="ri-edit-line ri-lg cursor-pointer"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Profile Page -->
+      <div id="profile-page" class="px-4 py-2">
+        <!-- User Info -->
+        <div class="flex flex-col items-center mb-8 pt-4">
+          <div class="relative mb-3">
+            <div
+              class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary"
+            >
+              <img
+                src="https://scontent-sin11-2.xx.fbcdn.net/v/t39.30808-6/481329835_647732181122864_7551252543852453839_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHC_Q_-IC8VgmwUpqZhVR3d_X41NmEaOM79fjU2YRo4ztx-l7nz6jEEHAiMO9Up_YXxoD3oUFgNl8BJNNWjUmM0&_nc_ohc=3q8mgm7FWoAQ7kNvwE6OFHf&_nc_oc=AdmMJNdAeIeaREXjoSasvpAO3iEZw9sz5hTiksmTyF-J0-XDA5czBds1CCo0GZQcsPE-PCtGoNvaOJiPno_qhGa9&_nc_zt=23&_nc_ht=scontent-sin11-2.xx&_nc_gid=yruUsA8OfDeB9C9XZPP3dw&oh=00_AfMp2VjlOwYymy_0MGNg0Znz6anU1EEiBqoyFjgc2GZyhw&oe=6855B51B"
+                alt="Avatar"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer"
+            >
+              <i class="ri-camera-line ri-lg"></i>
+            </div>
+          </div>
+          <h2 class="text-xl font-semibold mb-1">Nguyễn Hữu Mạnh</h2>
+          <div class="flex flex-col items-center text-gray-500 text-sm">
+            <p class="mb-1">ManhNH24@uef.edu.vn</p>
+            <p>+84 906 473 098</p>
+          </div>
+        </div>
+
+        <!-- Menu Sections -->
+        <div class="space-y-6">
+          <!-- My Activities Section -->
+          <div>
+            <h3 class="text-base font-semibold mb-3 px-1">Hoạt động của tôi</h3>
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div
+                class="menu-item flex items-center p-4 cursor-pointer border-b border-gray-100"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-history-line ri-lg text-primary"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Lịch sử quét QR</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+              <div
+                class="menu-item flex items-center p-4 cursor-pointer border-b border-gray-100"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-alarm-warning-line ri-lg text-primary"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Báo cáo vi phạm</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+              <div class="menu-item flex items-center p-4 cursor-pointer">
+                <div
+                  class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-restaurant-line ri-lg text-primary"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Theo dõi dinh dưỡng</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Settings Section -->
+          <div>
+            <h3 class="text-base font-semibold mb-3 px-1">Cài đặt tài khoản</h3>
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div
+                class="menu-item flex items-center p-4 cursor-pointer border-b border-gray-100"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-notification-3-line ri-lg text-blue-500"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Thông báo</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-xs text-gray-400 mr-2">Bật</span>
+                  <i class="ri-arrow-right-s-line text-gray-400"></i>
+                </div>
+              </div>
+              <div
+                class="menu-item flex items-center p-4 cursor-pointer border-b border-gray-100"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-lock-line ri-lg text-purple-500"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Quyền riêng tư</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+              <div class="menu-item flex items-center p-4 cursor-pointer">
+                <div
+                  class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-global-line ri-lg text-orange-500"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Ngôn ngữ</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-xs text-gray-400 mr-2">Tiếng Việt</span>
+                  <i class="ri-arrow-right-s-line text-gray-400"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Info Section -->
+          <div>
+            <h3 class="text-base font-semibold mb-3 px-1">Thông tin khác</h3>
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div
+                class="menu-item flex items-center p-4 cursor-pointer border-b border-gray-100"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-file-list-3-line ri-lg text-gray-500"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Điều khoản sử dụng</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+              <div
+                class="menu-item flex items-center p-4 cursor-pointer border-b border-gray-100"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-shield-check-line ri-lg text-gray-500"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Chính sách bảo mật</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+              <div class="menu-item flex items-center p-4 cursor-pointer">
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3"
+                >
+                  <i class="ri-information-line ri-lg text-gray-500"></i>
+                </div>
+                <div class="flex-1">
+                  <span class="text-sm font-medium">Về chúng tôi</span>
+                </div>
+                <i class="ri-arrow-right-s-line text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logout Button -->
+          <div class="pt-4 pb-8">
+            <button
+              id="logout-btn"
+              class="w-full bg-red-50 text-red-500 font-medium py-3 rounded-button shadow-sm flex items-center justify-center"
+            >
+              <i class="ri-logout-box-line mr-2"></i>
+              Đăng xuất
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 w-full bg-white shadow-lg z-50">
+      <div class="grid grid-cols-5 h-16">
+        <a
+          href="homepage.html"
+          data-readdy="true"
+          class="flex flex-col items-center justify-center text-gray-500"
+        >
+          <i class="ri-home-5-line ri-lg"></i>
+          <span class="text-xs mt-1">Trang chủ</span>
+        </a>
+        <button
+          id="search-tab"
+          class="flex flex-col items-center justify-center text-gray-500"
+        >
+          <i class="ri-search-line ri-lg"></i>
+          <span class="text-xs mt-1">Tìm kiếm</span>
+        </button>
+        <button
+          id="scan-tab"
+          class="flex flex-col items-center justify-center text-gray-500"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-primary flex items-center justify-center -mt-4"
+          >
+            <i class="ri-qr-scan-line ri-lg text-black"></i>
+          </div>
+          <span class="text-xs mt-1">Quét QR</span>
+        </button>
+        <button
+          id="settings-tab"
+          class="flex flex-col items-center justify-center text-gray-500"
+        >
+          <i class="ri-settings-3-line ri-lg"></i>
+          <span class="text-xs mt-1">Cài đặt</span>
+        </button>
+        <button
+          id="profile-tab"
+          class="flex flex-col items-center justify-center text-primary"
+        >
+          <i class="ri-user-fill ri-lg"></i>
+          <span class="text-xs mt-1">Tài khoản</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Logout Confirmation Modal -->
+    <div
+      id="logout-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
+    >
+      <div class="bg-white rounded-lg w-4/5 overflow-hidden">
+        <div class="p-5">
+          <h3 class="text-lg font-semibold mb-2">Xác nhận đăng xuất</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?
+          </p>
+          <div class="flex space-x-3">
+            <button
+              id="cancel-logout"
+              class="flex-1 py-2 border border-gray-300 rounded-button text-gray-700 font-medium"
+            >
+              Hủy
+            </button>
+            <button
+              id="confirm-logout"
+              class="flex-1 py-2 bg-red-500 text-white rounded-button font-medium"
+                onclick="logout()"
+            >
+              Đăng xuất
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div
+      id="edit-profile-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"
+    >
+      <div
+        class="bg-white rounded-t-xl absolute bottom-0 left-0 right-0 max-h-[90%] overflow-y-auto"
+      >
+        <div
+          class="sticky top-0 bg-white p-4 border-b border-gray-200 flex justify-between items-center"
+        >
+          <button id="cancel-edit" class="text-gray-500">Hủy</button>
+          <h3 class="text-lg font-semibold">Chỉnh sửa hồ sơ</h3>
+          <button id="save-profile" class="text-primary font-medium">
+            Lưu
+          </button>
+        </div>
+        <div class="p-5 space-y-4">
+          <div class="flex flex-col items-center mb-6">
+            <div class="relative mb-3">
+              <div
+                class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary"
+              >
+                <img
+                  src="https://scontent-sin11-2.xx.fbcdn.net/v/t39.30808-6/481329835_647732181122864_7551252543852453839_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHC_Q_-IC8VgmwUpqZhVR3d_X41NmEaOM79fjU2YRo4ztx-l7nz6jEEHAiMO9Up_YXxoD3oUFgNl8BJNNWjUmM0&_nc_ohc=3q8mgm7FWoAQ7kNvwE6OFHf&_nc_oc=AdmMJNdAeIeaREXjoSasvpAO3iEZw9sz5hTiksmTyF-J0-XDA5czBds1CCo0GZQcsPE-PCtGoNvaOJiPno_qhGa9&_nc_zt=23&_nc_ht=scontent-sin11-2.xx&_nc_gid=zaauSf4rB9FLqszbJjT5zg&oh=00_AfMb_zG5desYCFrXyUNNB5Q5JCYU9a5AbSmU5JAldbpjcA&oe=6855B51B"
+                  alt="Avatar"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer"
+              >
+                <i class="ri-camera-line ri-lg"></i>
+              </div>
+            </div>
+            <span class="text-sm text-gray-500"
+              >Nhấn để thay đổi ảnh đại diện</span
+            >
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Họ và tên</label
+            >
+            <input
+              type="text"
+              value="Nguyễn Hữu Mạnh"
+              class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-sm"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Email</label
+            >
+            <input
+              type="email"
+              value="ManhNH24@uef.edu.vn"
+              class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-sm"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Số điện thoại</label
+            >
+            <input
+              type="tel"
+              value="+84 906 473 098"
+              class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-sm"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Ngày sinh</label
+            >
+            <input
+              type="date"
+              value="12-11-2006"
+              class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-sm"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Địa chỉ</label
+            >
+            <input
+              type="text"
+              value="Tp. Thủ Đức, TP. Hồ Chí Minh"
+              class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-sm"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatar Selection Modal -->
+    <div
+      id="avatar-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"
+    >
+      <div class="bg-white rounded-t-xl absolute bottom-0 left-0 right-0">
+        <div class="p-5">
+          <h3 class="text-lg font-semibold mb-4 text-center">
+            Thay đổi ảnh đại diện
+          </h3>
+          <div class="space-y-3">
+            <button
+              class="w-full py-3 bg-white border border-gray-300 rounded-button text-gray-700 font-medium flex items-center justify-center"
+            >
+              <i class="ri-camera-line mr-2"></i>
+              Chụp ảnh mới
+            </button>
+            <button
+              class="w-full py-3 bg-white border border-gray-300 rounded-button text-gray-700 font-medium flex items-center justify-center"
+            >
+              <i class="ri-image-line mr-2"></i>
+              Chọn từ thư viện
+            </button>
+            <button
+              id="cancel-avatar"
+              class="w-full py-3 bg-gray-100 rounded-button text-gray-700 font-medium mt-2"
+            >
+              Hủy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script id="profile-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Logout modal
+        const logoutBtn = document.getElementById("logout-btn");
+        const logoutModal = document.getElementById("logout-modal");
+        const cancelLogout = document.getElementById("cancel-logout");
+        const confirmLogout = document.getElementById("confirm-logout");
+
+        logoutBtn.addEventListener("click", function () {
+          logoutModal.classList.remove("hidden");
+        });
+
+        cancelLogout.addEventListener("click", function () {
+          logoutModal.classList.add("hidden");
+        });
+
+        confirmLogout.addEventListener("click", function () {
+          // Implement logout functionality here
+          logoutModal.classList.add("hidden");
+          // Redirect to login page or show success message
+        });
+
+        // Edit profile modal
+        const editProfileBtn =
+          document.querySelector(".ri-edit-line").parentElement;
+        const editProfileModal = document.getElementById("edit-profile-modal");
+        const cancelEdit = document.getElementById("cancel-edit");
+        const saveProfile = document.getElementById("save-profile");
+
+        editProfileBtn.addEventListener("click", function () {
+          editProfileModal.classList.remove("hidden");
+        });
+
+        cancelEdit.addEventListener("click", function () {
+          editProfileModal.classList.add("hidden");
+        });
+
+        saveProfile.addEventListener("click", function () {
+          // Implement save profile functionality here
+          editProfileModal.classList.add("hidden");
+          // Show success message
+        });
+
+        // Avatar modal
+        const avatarBtn = document.querySelector(".w-24.h-24").parentElement;
+        const avatarModal = document.getElementById("avatar-modal");
+        const cancelAvatar = document.getElementById("cancel-avatar");
+
+        avatarBtn.addEventListener("click", function () {
+          avatarModal.classList.remove("hidden");
+        });
+
+        cancelAvatar.addEventListener("click", function () {
+          avatarModal.classList.add("hidden");
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener("click", function (event) {
+          if (event.target === logoutModal) {
+            logoutModal.classList.add("hidden");
+          }
+          if (event.target === editProfileModal) {
+            editProfileModal.classList.add("hidden");
+          }
+          if (event.target === avatarModal) {
+            avatarModal.classList.add("hidden");
+          }
+        });
+      });
+    </script>
+
+    <script id="navigation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Tab elements
+        const tabs = {
+          home: document.querySelector('a[href*="homepage.html"]'),
+          search: document.getElementById("search-tab"),
+          scan: document.getElementById("scan-tab"),
+          settings: document.getElementById("settings-tab"),
+          profile: document.getElementById("profile-tab"),
+        };
+
+        // Menu items
+        const menuItems = document.querySelectorAll(".menu-item");
+        menuItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            // Add navigation functionality for each menu item
+            // For demonstration, we'll just add a ripple effect
+            const ripple = document.createElement("div");
+            ripple.classList.add(
+              "bg-primary",
+              "bg-opacity-20",
+              "absolute",
+              "rounded-full"
+            );
+            this.appendChild(ripple);
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+            ripple.classList.add("animate-ripple");
+            setTimeout(() => {
+              ripple.remove();
+            }, 600);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+<script>
+  function goToHome() {
+    window.location.href = "homepage.html";
+  }
+
+  function logout() {
+    window.location.href = "index.html";
+  }
+</script>
